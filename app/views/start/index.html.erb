@@ -1,0 +1,42 @@
+<h1><%=current_user.name%></h1>
+
+<br>
+
+<%if(@task.present?) %>
+	<%=form_for(@task) do |f|%>
+		<div class = "form-group">
+			<%=f.label "completed task"%>
+			<%=f.text_field :completed, class: "form-control"%>
+		</div>
+	 	<%=f.submit :Submit, class: "btn btn-primary"%>
+	<%end%>
+<%else%>
+	<%=form_for(:task, url: tasks_path) do |f| %>
+				<div class = "form-group">
+			<%=f.label "TASK TO DO"%><br>
+			<%=f.text_field :to_do, class: "form-control"%>
+		</div>
+<br>
+		<%=f.submit :Submit, class: "btn btn-success"%>
+	<%end%>
+<%end%>
+<br>
+<p>
+	</p>
+	<table class="table table-bordered table-dark">
+		<tr>
+		<th>DATE </th>
+			<th>TASK</th>
+		<th>COMPLETED</th>
+	</tr>
+	<% @tasks.each do |task| %>
+
+		<tr>
+
+			<td><%=task.date%></td>
+			<td><%=task.to_do%>	</td>
+			<td><%=task.completed%></td>
+
+		</tr>
+	<%end%>
+</table>

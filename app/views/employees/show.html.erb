@@ -1,0 +1,26 @@
+<table class = "table">
+ 	<tr>
+ 		<th>
+ 			Date
+ 		</th>
+ 		<th>
+ 			Plan
+ 		</th>
+ 		<th>
+ 			Accomplishment
+ 		</th>
+ 	</tr>
+ 	<% @tasks.each do |task| %>
+ 		<tr>
+ 			<td>
+ 				<%=task.date%>
+ 			</td>
+ 			<td>
+ 				<%=task.to_do%>
+ 			</td>
+ 			<td>
+ 				<%=task.completed%>
+ 			</td>
+ 		</tr>
+ 	<%end%>
+</table>
