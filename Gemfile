@@ -60,6 +60,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem 'whenever', :require => false
+gem 'petergate', '~> 1.6', '>= 1.6.3'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
