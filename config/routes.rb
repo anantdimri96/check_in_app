@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     										} , :controllers => { :sessions => "users/sessions" }
 
 resources :tasks
+resources :people
 
 
 resources :employees

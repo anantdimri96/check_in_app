@@ -1,7 +1,6 @@
 class ExampleMailer < ApplicationMailer
-  def sample_email(user)
-     @user = user
-     mail(to: @user.email, subject: 'cron job test')
+  def sample_email
+          mail(to: "anant.dimri96@gmail.com", subject: 'check in app')
    end
 
 

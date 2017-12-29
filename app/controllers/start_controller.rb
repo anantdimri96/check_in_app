@@ -2,8 +2,8 @@ class StartController < ApplicationController
 
   def index
     if (user_signed_in?)
-      @user=current_user
-        ExampleMailer.sample_email(@user).deliver_now
+      # @user=current_user
+      ExampleMailer.sample_email.deliver_now
     @tasks = current_user.tasks
   	@task = @tasks.find_by(date: Time.now.strftime("%d/%m/%Y"))
      @data = params[:radios1]

@@ -1,0 +1,19 @@
+<table class="table table-bordered table-dark">
+  <tr>
+  <th>Date </th>
+  <th>Tasks</th>
+
+
+</tr>
+<% @tasks.each do |task| %>
+
+  <tr>
+
+
+    <td><%=task.to_do%>	</td>
+    <td><%=task.completed%>	</td>
+      </tr>
+<%end%>
+</table>
+
+<%= link_to "BACK",people_path %>
