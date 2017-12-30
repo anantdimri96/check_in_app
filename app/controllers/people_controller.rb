@@ -4,7 +4,8 @@ class PeopleController < ApplicationController
     @users=User.all
   end
 def show
-  @tasks=current_user.tasks
+  @temp=User.find(params[:id])
+  @tasks=@temp.tasks
 end
 
 end
