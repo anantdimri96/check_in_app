@@ -11,6 +11,7 @@ gem 'rails', '~> 5.1.4'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'jquery-rails'
 gem 'whenever', :require => false
+gem 'sidekiq'
 
 gem 'devise', '~> 4.3'
 # Use sqlite3 as the database for Active Record
