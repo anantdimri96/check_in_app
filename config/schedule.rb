@@ -18,7 +18,20 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+require "./"+ File.dirname(__FILE__) + "/environment.rb"
 
-every 1.minute do
-	rake "email_task", :environment => "development"
+@users = User.all
+@users.each do |user|
+		every :day, :at => user.start_time do
+ 			rake "mailme", :environment => "development"
+ 	end
+
+ 		every :day, :at => user.end_time do
+ 		rake "mailme", :environment => "development"
+
+	end
+
 end
+# every 1.minute do
+# 	rake "email_task", :environment => "development"
+# end

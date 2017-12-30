@@ -1,6 +1,9 @@
 <h1><%=current_user.name%></h1>
 
 <br>
+<% if logged_in?(:admin, :editor)%>
+	<p><%= link_to "ALL USERS", people_path%></p>
+<%end%><br>
 
 <%if(@task.present?) %>
 	<%=form_for(@task) do |f|%>

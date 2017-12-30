@@ -3,7 +3,8 @@ class HardWorker
 
   def perform(*args)
     # Do something
-    ExampleMailer.sample_email.deliver_now!
 
+    ExampleMailer.sample_email(user).deliver_now!
+  
   end
 end

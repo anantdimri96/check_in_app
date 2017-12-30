@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-
+  access admin: :all
   def index
     @users=User.all
   end
