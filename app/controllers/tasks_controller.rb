@@ -11,8 +11,6 @@ class TasksController < ApplicationController
 		end
 	end
 
-
-
    def set_checkbox
        task = Task.find(params[:plan_id])
 
@@ -38,11 +36,5 @@ class TasksController < ApplicationController
 	def set_task
 		@task = Task.find(params[:id])
 	end
-
-
-
-
-
-
 
 end

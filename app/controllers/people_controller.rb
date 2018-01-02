@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
 
   def index
     @users=User.all
-    @department=User.dept_id
+    
   end
 def show
   @temp=User.find(params[:id])

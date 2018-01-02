@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180102100247) do
+ActiveRecord::Schema.define(version: 20180102104222) do
 
   create_table "depts", force: :cascade do |t|
     t.text "dept_name"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20180102100247) do
     t.string "roles"
     t.text "start_time"
     t.text "end_time"
-    t.integer "dept_id"
+    t.integer "dept_id", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
