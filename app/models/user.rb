@@ -15,5 +15,6 @@ class User < ApplicationRecord
 
   validates :name, :presence => true
   has_many :tasks
+  belongs_to :dept
 
 end

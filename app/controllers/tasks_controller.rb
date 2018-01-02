@@ -11,19 +11,37 @@ class TasksController < ApplicationController
 		end
 	end
 
+
+
+   def set_checkbox
+       task = Task.find(params[:plan_id])
+
+       if(task.checkbox == true)
+          task.update!(checkbox: false)
+         else
+           task.update!(checkbox: true)
+         end
+   end
+
+
+
 	def update
 		set_task
 		if(@task.update!(params.require(:task).permit(:completed)))
 			redirect_to root_path
-		else
-			render plain: "error"
 		end
 	end
+
+
 
 	private
 	def set_task
 		@task = Task.find(params[:id])
 	end
+
+
+
+
 
 
 

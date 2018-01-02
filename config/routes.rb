@@ -14,4 +14,6 @@ resources :people
 
 resources :employees
 
+ get '/insert_checkbox' => 'tasks#set_checkbox'
+
 end

@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
    def configure_permitted_parameters
    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+   devise_parameter_sanitizer.permit(:sign_up, keys: [:dept])
    devise_parameter_sanitizer.permit(:sign_up, keys: [:start_time])
    devise_parameter_sanitizer.permit(:sign_up, keys: [:end_time])
    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
@@ -17,6 +18,7 @@ class ApplicationController < ActionController::Base
  def set_session
    session[:source] = params[:q] if params[:q]
  end
+
 
 
 end

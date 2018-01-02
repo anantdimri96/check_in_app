@@ -1,19 +1,64 @@
-<h1> ALL USERS (FOR ADMIN)  </h1>
-
-<table class="table table-bordered table-dark">
-  <tr>
-  <th>Name </th>
-  <th>Task</th>
+<h1> ALL USERS  </h1>
 
 
-</tr>
-<% @users.each do |user| %>
-
-  <tr>
 
 
-    <td><%=user.name%>	</td>
-    <td> <%= link_to "view",person_path(user.id) %>    </td>
-  </tr>
-<%end%>
-</table>
+<div class=" container-fluid   container-fixed-lg">
+            <div class="row">
+
+              <div class="col-lg-6">
+                <!-- START card -->
+                <div class="card card-transparent">
+                  <div class="card-header ">
+                    <div class="card-title">
+                    </div>
+                    <div class="tools">
+                      <a class="collapse" href="javascript:;"></a>
+                      <a class="config" data-toggle="modal" href="#grid-config"></a>
+                      <a class="reload" href="javascript:;"></a>
+                      <a class="remove" href="javascript:;"></a>
+                    </div>
+                  </div>
+                  <div class="card-block">
+                    <div class="table-responsive">
+                      <div id="condensedTable_wrapper" class="dataTables_wrapper no-footer">
+                        <table class="table table-hover table-condensed dataTable no-footer" id="condensedTable" role="grid">
+                        <thead>
+                          <tr role="row">
+                            <th style="width:30%" class="sorting_asc" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Task: activate to sort column descending">NAME</th>
+                            <th style="width: px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Key: activate to sort column ascending">TASK</th>
+
+                        </thead>
+                        <tbody>
+
+                          <% @users.each do |user| %>
+                          	 	<% @department = user.department%>
+                          	 	<% @current_department = current_user.department %>
+                          	 	<% if logged_in?(:editor)%>
+                          			<% if @current_department == @department%>
+                          				<tr role="row">
+                          		 			<td class="v-align-middle semi-bold sorting_1">
+                          		 				<%=user.name%>
+                          		 			</td>
+                          		 			<td class="v-align-middle semi-bold sorting_1">
+                                		 				<%= @department.dept_name%>
+
+                          		 				 </td>
+                          		 			<td class="v-align-middle"> <%= link_to "view",person_path(user.id) %>    </td>
+                           				</tr>
+                          			<%end%>
+
+
+
+
+                      </tbody>
+                      </table></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END card -->
+              </div>
+            </div>
+          </div>
+
+<%= link_to "BACK",root_path %>

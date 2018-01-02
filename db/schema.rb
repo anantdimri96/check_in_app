@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171230112043) do
+ActiveRecord::Schema.define(version: 20180102100247) do
+
+  create_table "depts", force: :cascade do |t|
+    t.text "dept_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.text "user_id"
@@ -19,6 +25,7 @@ ActiveRecord::Schema.define(version: 20171230112043) do
     t.text "completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "checkbox", default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,6 +45,7 @@ ActiveRecord::Schema.define(version: 20171230112043) do
     t.string "roles"
     t.text "start_time"
     t.text "end_time"
+    t.integer "dept_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

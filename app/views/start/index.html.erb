@@ -1,9 +1,17 @@
 <h1><%=current_user.name%></h1>
 
 <br>
-<% if logged_in?(:admin, :editor)%>
+<% if logged_in?(:admin)%>
+<p> YOU ARE AN ADMIN</p>
 	<p><%= link_to "ALL USERS", people_path%></p>
 <%end%><br>
+
+<% if logged_in?(:editor)%>
+	<p> YOU ARE A MANAGER</p>
+	<p><%= link_to "ALL USERS", people_path%></p>
+<%end%><br>
+
+
 
 <%if(@task.present?) %>
 	<%=form_for(@task) do |f|%>
@@ -20,7 +28,7 @@
 			<%=f.text_field :to_do, class: "form-control"%>
 		</div>
 <br>
-		<%=f.submit :Submit, class: "btn btn-success"%>
+		<%=f.submit :Submit, class: "btn btn-primary"%>
 	<%end%>
 <%end%>
 <br>
