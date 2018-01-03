@@ -6,48 +6,123 @@
 	<p><%= link_to "ALL USERS", people_path%></p>
 <%end%><br>
 
-<% if logged_in?(:editor)%>
+<!-- <% if logged_in?(:editor)%>
 	<p> YOU ARE A MANAGER</p>
 	<p><%= link_to "ALL USERS", people_path%></p>
-<%end%><br>
+<%end%><br> -->
 
 
+<% if(@tasks_perday.present?)%>
+	<%if Time.now.hour > 10 %>
+				<% @tasks_perday.each do |task|%>
+					<br>
+					<%if !(task.checkbox)%>
+	 				<input type="checkbox" id="checkbox-users-show" <%= task.checkbox == true ? 'checked': '' %> onclick="sendCheckRequest(<%=task.id%>)">
 
-<%if(@task.present?) %>
-	<%=form_for(@task) do |f|%>
-		<div class = "form-group">
-			<%=f.label "completed task"%>
-			<%=f.text_field :completed, class: "form-control"%>
-		</div>
-	 	<%=f.submit :Submit, class: "btn btn-primary"%>
+					<%=task.to_do%>
+					<%end%>
+					<%end%>
+	<%else%>
+		<p>see what happens</p>
 	<%end%>
 <%else%>
 	<%=form_for(:task, url: tasks_path) do |f| %>
-				<div class = "form-group">
-			<%=f.label "TASK TO DO"%><br>
-			<%=f.text_field :to_do, class: "form-control"%>
+		<div class = "form-group">
+			<%=f.label "to do)"%>
+			<%=f.text_area :to_do, class: "form-control"%>
 		</div>
-<br>
-		<%=f.submit :Submit, class: "btn btn-primary"%>
+				<%=f.submit "New TASK"%>
 	<%end%>
 <%end%>
 <br>
-<p>
-	</p>
-	<table class="table table-bordered table-dark">
-		<tr>
-		<th>DATE </th>
-			<th>TASK</th>
-		<th>COMPLETED</th>
-	</tr>
-	<% @tasks.each do |task| %>
 
-		<tr>
 
-			<td><%=task.date%></td>
-			<td><%=task.to_do%>	</td>
-			<td><%=task.completed%></td>
 
-		</tr>
-	<%end%>
-</table>
+<div class=" container-fluid   container-fixed-lg">
+            <div class="row">
+
+              <div class="col-lg-6">
+                <!-- START card -->
+                <div class="card card-transparent">
+
+                    <div class="card-title">
+                    </div>
+                    <div class="tools">
+                      <a class="collapse" href="javascript:;"></a>
+                      <a class="config" data-toggle="modal" href="#grid-config"></a>
+                      <a class="reload" href="javascript:;"></a>
+                      <a class="remove" href="javascript:;"></a>
+                    </div>
+
+                  <div class="card-block">
+                    <div class="table-responsive">
+                      <div id="condensedTable_wrapper" class="dataTables_wrapper no-footer">
+                        <table class="table table-hover table-condensed dataTable no-footer" id="condensedTable" role="grid">
+                        <thead>
+                          <tr role="row">
+                            <th style="width:30%" class="sorting_asc" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Task: activate to sort column descending">DATE</th>
+                            <th style="width: px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Key: activate to sort column ascending">TASK</th>
+														<th style="width: px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Key: activate to sort column ascending">COMPLETED</th>
+                        </thead>
+                        <tbody>
+
+
+
+												<% @dates.each do |date| %>
+													<tr role="row" >
+														<td class="v-align-middle semi-bold sorting_1">
+															<%=date%>
+														</td>
+														<td class="v-align-middle semi-bold sorting_1">
+															<%@tasks.where(date: date).each do |task|%>
+																<%=task.to_do%> <br>
+																	<%end%>
+														</td>
+														<td class="v-align-middle semi-bold sorting_1">
+											<%@tasks.where(date: date).each do |task|%>
+
+														<% if (task.checkbox) %>
+																<strike><%=task.to_do %></strike>
+																	<br>
+											<%end%>
+																<%end%>
+
+														</td>
+													</tr>
+											<%end%>
+
+
+
+
+
+
+                      </tbody>
+                      </table></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END card -->
+              </div>
+            </div>
+          </div>
+
+
+
+<script type="text/javascript">
+function sendCheckRequest(TaskId){
+	 $.ajax({
+		url: '../insert_checkbox',
+		type: "GET",
+		data: {'plan_id': TaskId},
+		dataType: "json",
+
+    success: function(data){
+			alert("Success");
+		},
+    error: function(data){
+      alert("failure");
+    }
+	});
+	location.reload();
+}
+</script>
